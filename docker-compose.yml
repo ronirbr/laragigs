@@ -1,0 +1,39 @@
+services:
+  php-apache2:
+    build:
+      args:
+        user: roni
+        uid: 1000
+      context: .
+      dockerfile: Dockerfile
+    image: laragigs-image-php-apache2
+    container_name: laragigs-php-apache2
+    ports:
+      - 80:80 
+    restart: unless-stopped
+    working_dir: /var/www/html
+    volumes:
+      - .:/var/www/html
+    networks:
+      - laragigs
+
+  mysql:
+    image: mysql:8
+    container_name: laragigs-mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+      MYSQL_USER: ${DB_USER}
+      SERVICE_TAGS: dev
+      SERVICE_NAME: mysql
+    expose:
+      - 3306
+    ports:
+      - 3306:3306
+    networks:
+      - laragigs
+
+networks:
+  laragigs:
+    driver: bridge
