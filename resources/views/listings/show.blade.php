@@ -33,7 +33,7 @@
     </div>
   </x-card>
 
-  <x-card class="mt-4 p-2 flex space-x-6">
+  {{-- <x-card class="mt-4 p-2 flex space-x-6">
     <a href="/public/listings/{{$listing->id}}/edit">
       <i class="fa-solid fa-pencil"></i> Edit
     </a>
@@ -43,6 +43,6 @@
       @method('DELETE')
       <button class="text-red-500"><i class="fa-solid fa-trash"></i> Delete</button>
     </form>
-  </x-card>
+  </x-card> --}}
 </div>
 </x-layout>
